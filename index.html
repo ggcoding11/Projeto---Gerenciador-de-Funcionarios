@@ -12,74 +12,73 @@
 
 <body>
     <div class="container">
-        <h3>Gerenciador de funcionários</h1>
+        <h3>Gerenciador de funcionários</h3>
 
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" 
-                id="btn-adicionar">
-                Novo
-            </button>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" 
+            id="btn-adicionar">
+            Novo
+        </button>
 
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Preencha o formulário</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-
-                        <form action="">
-                            <div class="modal-body">
-                                <div class="mb-3">
-                                    <label for="nome" class="form-label">Nome do funcionário <span class="obrigatorio">*</span></label>
-                                    <input type="text" class="form-control" id="nome">
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="idade" class="form-label">Idade <span class="obrigatorio">*</span></label>
-                                    <input type="number" class="form-control" id="idade">
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="cidade" class="form-label">Cidade <span class="obrigatorio">*</span></label>
-                                    <input type="text" class="form-control" id="cidade">
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="fone" class="form-label">Telefone <span class="obrigatorio">*</span></label>
-                                    <input type="text" class="form-control" id="fone" placeholder="(44) 99999-9999">
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="cpf" class="form-label">CPF <span class="obrigatorio">*</span></label>
-                                    <input type="text" class="form-control" id="cpf" placeholder="000.000.000-00">
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-primary" id="btn-cadastrar" 
-                                    aria-label="Close">Cadastrar</button>
-                            </div>
-                        </form>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Preencha o formulário</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
+
+                    <form action="">
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label for="nome" class="form-label">Nome do funcionário <span class="obrigatorio">*</span></label>
+                                <input type="text" class="form-control" id="nome">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="idade" class="form-label">Idade <span class="obrigatorio">*</span></label>
+                                <input type="number" class="form-control" id="idade">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="cidade" class="form-label">Cidade <span class="obrigatorio">*</span></label>
+                                <input type="text" class="form-control" id="cidade">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="fone" class="form-label">Telefone <span class="obrigatorio">*</span></label>
+                                <input type="text" class="form-control" id="fone" placeholder="(44) 99999-9999">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="cpf" class="form-label">CPF <span class="obrigatorio">*</span></label>
+                                <input type="text" class="form-control" id="cpf" placeholder="000.000.000-00">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" id="btn-cadastrar" 
+                                aria-label="Close">Cadastrar</button>
+                        </div>
+                    </form>
                 </div>
             </div>
+        </div>
 
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Nome</th>
-                        <th>Idade</th>
-                        <th>Cidade</th>
-                        <th>Telefone</th>
-                        <th>CPF</th>
-                    </tr>
-                </thead>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Idade</th>
+                    <th>Cidade</th>
+                    <th>Telefone</th>
+                    <th>CPF</th>
+                </tr>
+            </thead>
 
-                <tbody>
+            <tbody>
 
-                </tbody>
-            </table>
-
+            </tbody>
+        </table>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
