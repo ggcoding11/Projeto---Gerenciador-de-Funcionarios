@@ -2,7 +2,7 @@ Inputmask({ mask: "(99) 99999-9999" }).mask(document.getElementById("fone"));
 Inputmask({ mask: "999.999.999-99" }).mask(document.getElementById("cpf"));
 
 let funcionarios = [];
-let bsModal;
+let instanciaModal;
 
 document.querySelector("#btn-adicionar").addEventListener("click", () => {
   instanciaModal = bootstrap.Modal.getInstance(
