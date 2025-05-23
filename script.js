@@ -24,7 +24,5 @@ document.querySelector("#btn-cadastrar").addEventListener("click", ()=> {
 
     funcionarios.push(pessoa)
 
-    ale
-
     console.log(funcionarios)
 })
