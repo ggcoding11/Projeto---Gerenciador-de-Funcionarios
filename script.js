@@ -11,6 +11,7 @@ document.querySelector("#btn-cadastrar").addEventListener("click", ()=> {
     let cpf = document.querySelector("#cpf").value
 
     if (nome == "" || idade == "" || cidade == "" || fone == "" || cpf == ""){
+        alert("Algum dado ainda está faltando!")
         return
     }
 
