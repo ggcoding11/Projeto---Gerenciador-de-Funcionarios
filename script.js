@@ -42,7 +42,7 @@ document.querySelector("#btn-cadastrar").addEventListener("click", () => {
       <td>${fone}</td>
       <td>${cpf}</td>
       <td>
-        <button class="btn btn-success" id="btn-olhar">
+        <button class="btn btn-success" id="btn-olhar" data-bs-toggle="modal" data-bs-target="#modalOlhar">
           <i class="bi bi-eye"></i>
         </button>
         <button class="btn btn-primary">
@@ -54,6 +54,10 @@ document.querySelector("#btn-cadastrar").addEventListener("click", () => {
       </td>
     </tr>
   `
+
+  document.getElementById("btn-olhar").addEventListener("click", ()=>{
+    
+  })
 
   document.querySelector("#nome").value = "";
   document.querySelector("#idade").value = "";
