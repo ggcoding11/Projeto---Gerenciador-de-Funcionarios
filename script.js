@@ -8,7 +8,7 @@ const tabela = document.getElementById("corpo-tabela")
 
 document.querySelector("#btn-adicionar").addEventListener("click", () => {
   instanciaModal = bootstrap.Modal.getInstance(
-    document.getElementById("exampleModal")
+    document.getElementById("modalCadastro")
   );
 });
 
@@ -42,7 +42,7 @@ document.querySelector("#btn-cadastrar").addEventListener("click", () => {
       <td>${fone}</td>
       <td>${cpf}</td>
       <td>
-        <button class="btn btn-success">
+        <button class="btn btn-success" id="btn-olhar">
           <i class="bi bi-eye"></i>
         </button>
         <button class="btn btn-primary">
@@ -54,7 +54,7 @@ document.querySelector("#btn-cadastrar").addEventListener("click", () => {
       </td>
     </tr>
   `
-  
+
   document.querySelector("#nome").value = "";
   document.querySelector("#idade").value = "";
   document.querySelector("#cidade").value = "";
