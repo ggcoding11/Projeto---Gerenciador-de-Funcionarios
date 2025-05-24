@@ -12,16 +12,24 @@
 </head>
 
 <body>
-    <div class="container">
-        <h3>Gerenciador de funcionários</h3>
+    <nav>
+        <div class="navbar">
+            <div class="container">
+                <h3>Gerenciador de funcionários</h3>
+            </div>
+        </div>
+    </nav>
 
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" 
-            id="btn-adicionar">
-            Novo <i class="bi bi-people"></i>
-        </button>
+    <div class="container" id="conteudo">
 
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
+        <div class="mb-2">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                id="btn-adicionar">
+                Novo <i class="bi bi-people"></i>
+            </button>
+        </div>
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -32,7 +40,8 @@
                     <form action="">
                         <div class="modal-body">
                             <div class="mb-3">
-                                <label for="nome" class="form-label">Nome do funcionário <span class="obrigatorio">*</span></label>
+                                <label for="nome" class="form-label">Nome do funcionário <span
+                                        class="obrigatorio">*</span></label>
                                 <input type="text" class="form-control" id="nome">
                             </div>
 
@@ -57,7 +66,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" id="btn-cadastrar" 
+                            <button type="button" class="btn btn-primary" id="btn-cadastrar"
                                 aria-label="Close">Cadastrar</button>
                         </div>
                     </form>
@@ -81,6 +90,46 @@
 
             </tbody>
         </table>
+
+        <div class="modal fade" id="modalOlhar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Perfil do funcionário</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <form action="">
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label for="nome" class="form-label">Nome do funcionário</label>
+                                <input type="text" class="form-control" id="nomeOlhar">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="idade" class="form-label">Idade</label>
+                                <input type="number" class="form-control" id="idadeOlhar">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="cidade" class="form-label">Cidade</label>
+                                <input type="text" class="form-control" id="cidadeOlhar">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="fone" class="form-label">Telefone</label>
+                                <input type="text" class="form-control" id="foneOlhar" placeholder="(44) 99999-9999">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="cpf" class="form-label">CPF</label>
+                                <input type="text" class="form-control" id="cpfOlhar" placeholder="000.000.000-00">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
