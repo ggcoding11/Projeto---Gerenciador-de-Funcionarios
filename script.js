@@ -34,7 +34,7 @@ document.querySelector("#btn-cadastrar").addEventListener("click", () => {
 
   funcionarios.push(pessoa);
 
-  tabela.innerHTML = `
+  tabela.innerHTML += `
     <tr>
       <td>${nome}</td>
       <td>${idade}</td>
@@ -42,7 +42,7 @@ document.querySelector("#btn-cadastrar").addEventListener("click", () => {
       <td>${fone}</td>
       <td>${cpf}</td>
       <td>
-        <button class="btn btn-success" id="btn-olhar" data-bs-toggle="modal" data-bs-target="#modalOlhar">
+        <button class="btn btn-success btn-olhar" data-bs-toggle="modal" data-bs-target="#modalOlhar">
           <i class="bi bi-eye"></i>
         </button>
         <button class="btn btn-primary">
@@ -54,10 +54,20 @@ document.querySelector("#btn-cadastrar").addEventListener("click", () => {
       </td>
     </tr>
   `
+  
+  let btnOlhar = document.querySelectorAll(".btn-olhar")
 
-  document.getElementById("btn-olhar").addEventListener("click", ()=>{
-    
-  })
+  btnOlhar.forEach((botao, index) => {
+    botao.addEventListener("click", () => {
+      alert("Oi")
+
+      document.querySelector("#nomeOlhar").value = funcionarios[index].nome
+      document.querySelector("#idadeOlhar").value = funcionarios[index].idade
+      document.querySelector("#cidadeOlhar").value = funcionarios[index].cidade
+      document.querySelector("#foneOlhar").value = funcionarios[index].fone
+      document.querySelector("#cpfOlhar").value = funcionarios[index].cpf
+    })
+  });
 
   document.querySelector("#nome").value = "";
   document.querySelector("#idade").value = "";
