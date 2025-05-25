@@ -54,13 +54,9 @@ document.querySelector("#btn-cadastrar").addEventListener("click", () => {
       </td>
     </tr>
   `
-  
-  let btnOlhar = document.querySelectorAll(".btn-olhar")
 
-  btnOlhar.forEach((botao, index) => {
+  document.querySelectorAll(".btn-olhar").forEach((botao, index) => {
     botao.addEventListener("click", () => {
-      alert("Oi")
-
       document.querySelector("#nomeOlhar").value = funcionarios[index].nome
       document.querySelector("#idadeOlhar").value = funcionarios[index].idade
       document.querySelector("#cidadeOlhar").value = funcionarios[index].cidade
@@ -76,6 +72,4 @@ document.querySelector("#btn-cadastrar").addEventListener("click", () => {
   document.querySelector("#cpf").value = "";
 
   instanciaModal.hide();
-
-  console.log(funcionarios);
 });
