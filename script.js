@@ -1,10 +1,10 @@
-Inputmask({ mask: "(99) 99999-9999" }).mask(document.getElementById("fone"));
-Inputmask({ mask: "999.999.999-99" }).mask(document.getElementById("cpf"));
+Inputmask({ mask: "(99) 99999-9999" }).mask(document.querySelector("#fone"));
+Inputmask({ mask: "999.999.999-99" }).mask(document.querySelector("#cpf"));
 
 let funcionarios = [];
 let instanciaModal;
 
-const tabela = document.getElementById("corpo-tabela")
+const tabela = document.querySelector("#corpo-tabela")
 
 document.querySelector("#btn-adicionar").addEventListener("click", () => {
   instanciaModal = bootstrap.Modal.getInstance(
@@ -48,7 +48,7 @@ document.querySelector("#btn-cadastrar").addEventListener("click", () => {
         <button class="btn btn-primary">
           <i class="bi bi-pencil-square"></i>
         </button>
-        <button class="btn btn-danger">
+        <button class="btn btn-danger btn-excluir">
           <i class="bi bi-trash"></i>
         </button>
       </td>
@@ -64,6 +64,15 @@ document.querySelector("#btn-cadastrar").addEventListener("click", () => {
       document.querySelector("#cpfOlhar").value = funcionarios[index].cpf
     })
   });
+
+  //Entender por que isso está funcionando
+
+  document.querySelectorAll(".btn-excluir").forEach((botao, index) =>{
+    botao.addEventListener("click", ()=>{
+      let linhasTabela = tabela.querySelectorAll("tr")
+      linhasTabela[index].innerHTML = ""
+    })
+  })
 
   document.querySelector("#nome").value = "";
   document.querySelector("#idade").value = "";
