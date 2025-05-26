@@ -15,6 +15,33 @@ document.querySelector("#btn-adicionar").addEventListener("click", () => {
   );
 });
 
+tabela.addEventListener("click", (e) => {
+  const btnOlhar = e.target.closest(".btn-olhar");
+  const btnExcluir = e.target.closest(".btn-excluir");
+
+  if (btnOlhar) {
+    const index = [...tabela.querySelectorAll(".btn-olhar")].indexOf(btnOlhar);
+    const pessoa = funcionarios[index];
+
+    document.querySelector("#nomeOlhar").value = pessoa.nome;
+    document.querySelector("#idadeOlhar").value = pessoa.idade;
+    document.querySelector("#cidadeOlhar").value = pessoa.cidade;
+    document.querySelector("#foneOlhar").value = pessoa.fone;
+    document.querySelector("#cpfOlhar").value = pessoa.cpf;
+  }
+
+  if (btnExcluir) {
+    const linhas = [...tabela.querySelectorAll("tr")];
+    const linha = btnExcluir.closest("tr");
+    const index = linhas.indexOf(linha);
+
+    if (index !== -1) {
+      funcionarios.splice(index, 1);
+      linha.remove();
+    }
+  }
+});
+
 document.querySelector("#btn-cadastrar").addEventListener("click", () => {
   let nome = document.querySelector("#nome").value;
   let idade = document.querySelector("#idade").value;
@@ -57,35 +84,6 @@ document.querySelector("#btn-cadastrar").addEventListener("click", () => {
       </td>
     </tr>
   `;
-
-  tabela.addEventListener("click", (e) => {
-    const btnOlhar = e.target.closest(".btn-olhar");
-    const btnExcluir = e.target.closest(".btn-excluir");
-
-    if (btnOlhar) {
-      const index = [...tabela.querySelectorAll(".btn-olhar")].indexOf(
-        btnOlhar
-      );
-      const pessoa = funcionarios[index];
-
-      document.querySelector("#nomeOlhar").value = pessoa.nome;
-      document.querySelector("#idadeOlhar").value = pessoa.idade;
-      document.querySelector("#cidadeOlhar").value = pessoa.cidade;
-      document.querySelector("#foneOlhar").value = pessoa.fone;
-      document.querySelector("#cpfOlhar").value = pessoa.cpf;
-    }
-
-    if (btnExcluir) {
-      const linhas = [...tabela.querySelectorAll("tr")];
-      const linha = btnExcluir.closest("tr");
-      const index = linhas.indexOf(linha);
-
-      if (index !== -1) {
-        funcionarios.splice(index, 1);
-        linha.remove();
-      }
-    }
-  });
 
   document.querySelector("#nome").value = "";
   document.querySelector("#idade").value = "";
