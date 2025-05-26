@@ -58,27 +58,33 @@ document.querySelector("#btn-cadastrar").addEventListener("click", () => {
     </tr>
   `;
 
-  atualizarBotoes()  
+  tabela.addEventListener("click", (e) => {
+    const btnOlhar = e.target.closest(".btn-olhar");
+    const btnExcluir = e.target.closest(".btn-excluir");
 
-  botoesOlhar.forEach((botao, index) => {
-    botao.addEventListener("click", () => {
-      document.querySelector("#nomeOlhar").value = funcionarios[index].nome;
-      document.querySelector("#idadeOlhar").value = funcionarios[index].idade;
-      document.querySelector("#cidadeOlhar").value = funcionarios[index].cidade;
-      document.querySelector("#foneOlhar").value = funcionarios[index].fone;
-      document.querySelector("#cpfOlhar").value = funcionarios[index].cpf;
-    });
-  });
+    if (btnOlhar) {
+      const index = [...tabela.querySelectorAll(".btn-olhar")].indexOf(
+        btnOlhar
+      );
+      const pessoa = funcionarios[index];
 
-  //Entender por que isso está funcionando
+      document.querySelector("#nomeOlhar").value = pessoa.nome;
+      document.querySelector("#idadeOlhar").value = pessoa.idade;
+      document.querySelector("#cidadeOlhar").value = pessoa.cidade;
+      document.querySelector("#foneOlhar").value = pessoa.fone;
+      document.querySelector("#cpfOlhar").value = pessoa.cpf;
+    }
 
-  botoesExcluir.forEach((botao, index) => {
-    botao.addEventListener("click", () => {
-      let linhasTabela = tabela.querySelectorAll("tr");
-      linhasTabela[index].innerHTML = "";
-      funcionarios.splice(index, 1);
-      atualizarBotoes()
-    });
+    if (btnExcluir) {
+      const linhas = [...tabela.querySelectorAll("tr")];
+      const linha = btnExcluir.closest("tr");
+      const index = linhas.indexOf(linha);
+
+      if (index !== -1) {
+        funcionarios.splice(index, 1);
+        linha.remove();
+      }
+    }
   });
 
   document.querySelector("#nome").value = "";
@@ -89,8 +95,3 @@ document.querySelector("#btn-cadastrar").addEventListener("click", () => {
 
   instanciaModal.hide();
 });
-
-function atualizarBotoes(){
-  botoesOlhar = document.querySelectorAll(".btn-olhar")
-  botoesExcluir = document.querySelectorAll(".btn-excluir")
-}
