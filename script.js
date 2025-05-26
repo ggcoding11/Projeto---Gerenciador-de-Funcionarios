@@ -4,8 +4,7 @@ Inputmask({ mask: "999.999.999-99" }).mask(document.querySelector("#cpf"));
 let funcionarios = [];
 let instanciaModal;
 
-let botoesOlhar;
-let botoesExcluir;
+console.log(document.getElementsByClassName("container")[0])
 
 const tabela = document.querySelector("#corpo-tabela");
 
@@ -15,13 +14,17 @@ document.querySelector("#btn-adicionar").addEventListener("click", () => {
   );
 });
 
-tabela.addEventListener("click", (e) => {
-  const btnOlhar = e.target.closest(".btn-olhar");
-  const btnExcluir = e.target.closest(".btn-excluir");
 
-  if (btnOlhar) {
-    const index = [...tabela.querySelectorAll(".btn-olhar")].indexOf(btnOlhar);
-    const pessoa = funcionarios[index];
+tabela.addEventListener("click", (elemClicado) => {
+  let botaoOlhar = elemClicado.target.closest(".btn-olhar")
+  let botaoExcluir = elemClicado.target.closest(".btn-excluir")
+
+  if (botaoOlhar) {
+    //A cada vez que eu clico, ele refaz a contagem dos botões e linhas disponíveis, o que me ajuda a pegar o index para o array FUNCIONÁRIOS
+
+    let index = Array.from(document.querySelectorAll(".btn-olhar")).indexOf(botaoOlhar)
+
+    let pessoa = funcionarios[index]
 
     document.querySelector("#nomeOlhar").value = pessoa.nome;
     document.querySelector("#idadeOlhar").value = pessoa.idade;
@@ -30,17 +33,15 @@ tabela.addEventListener("click", (e) => {
     document.querySelector("#cpfOlhar").value = pessoa.cpf;
   }
 
-  if (btnExcluir) {
-    const linhas = [...tabela.querySelectorAll("tr")];
-    const linha = btnExcluir.closest("tr");
-    const index = linhas.indexOf(linha);
+  if (botaoExcluir) {
+    let linhaBotao = botaoExcluir.closest("tr")
+    let listaLinhas = Array.from(tabela.querySelectorAll("tr"))
+    let index = listaLinhas.indexOf(linhaBotao)
 
-    if (index !== -1) {
-      funcionarios.splice(index, 1);
-      linha.remove();
-    }
+    funcionarios.splice(index, 1)
+    linhaBotao.remove() // Eu removi dai completamente do DOM lá
   }
-});
+})
 
 document.querySelector("#btn-cadastrar").addEventListener("click", () => {
   let nome = document.querySelector("#nome").value;
