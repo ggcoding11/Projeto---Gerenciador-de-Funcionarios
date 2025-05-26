@@ -4,6 +4,9 @@ Inputmask({ mask: "999.999.999-99" }).mask(document.querySelector("#cpf"));
 let funcionarios = [];
 let instanciaModal;
 
+let botoesOlhar;
+let botoesExcluir;
+
 const tabela = document.querySelector("#corpo-tabela");
 
 document.querySelector("#btn-adicionar").addEventListener("click", () => {
@@ -55,7 +58,9 @@ document.querySelector("#btn-cadastrar").addEventListener("click", () => {
     </tr>
   `;
 
-  document.querySelectorAll(".btn-olhar").forEach((botao, index) => {
+  atualizarBotoes()  
+
+  botoesOlhar.forEach((botao, index) => {
     botao.addEventListener("click", () => {
       document.querySelector("#nomeOlhar").value = funcionarios[index].nome;
       document.querySelector("#idadeOlhar").value = funcionarios[index].idade;
@@ -67,11 +72,12 @@ document.querySelector("#btn-cadastrar").addEventListener("click", () => {
 
   //Entender por que isso está funcionando
 
-  document.querySelectorAll(".btn-excluir").forEach((botao, index) => {
+  botoesExcluir.forEach((botao, index) => {
     botao.addEventListener("click", () => {
       let linhasTabela = tabela.querySelectorAll("tr");
       linhasTabela[index].innerHTML = "";
       funcionarios.splice(index, 1);
+      atualizarBotoes()
     });
   });
 
@@ -83,3 +89,8 @@ document.querySelector("#btn-cadastrar").addEventListener("click", () => {
 
   instanciaModal.hide();
 });
+
+function atualizarBotoes(){
+  botoesOlhar = document.querySelectorAll(".btn-olhar")
+  botoesExcluir = document.querySelectorAll(".btn-excluir")
+}
