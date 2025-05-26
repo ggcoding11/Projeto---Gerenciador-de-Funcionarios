@@ -4,7 +4,7 @@ Inputmask({ mask: "999.999.999-99" }).mask(document.querySelector("#cpf"));
 let funcionarios = [];
 let instanciaModal;
 
-const tabela = document.querySelector("#corpo-tabela")
+const tabela = document.querySelector("#corpo-tabela");
 
 document.querySelector("#btn-adicionar").addEventListener("click", () => {
   instanciaModal = bootstrap.Modal.getInstance(
@@ -53,26 +53,27 @@ document.querySelector("#btn-cadastrar").addEventListener("click", () => {
         </button>
       </td>
     </tr>
-  `
+  `;
 
   document.querySelectorAll(".btn-olhar").forEach((botao, index) => {
     botao.addEventListener("click", () => {
-      document.querySelector("#nomeOlhar").value = funcionarios[index].nome
-      document.querySelector("#idadeOlhar").value = funcionarios[index].idade
-      document.querySelector("#cidadeOlhar").value = funcionarios[index].cidade
-      document.querySelector("#foneOlhar").value = funcionarios[index].fone
-      document.querySelector("#cpfOlhar").value = funcionarios[index].cpf
-    })
+      document.querySelector("#nomeOlhar").value = funcionarios[index].nome;
+      document.querySelector("#idadeOlhar").value = funcionarios[index].idade;
+      document.querySelector("#cidadeOlhar").value = funcionarios[index].cidade;
+      document.querySelector("#foneOlhar").value = funcionarios[index].fone;
+      document.querySelector("#cpfOlhar").value = funcionarios[index].cpf;
+    });
   });
 
   //Entender por que isso está funcionando
 
-  document.querySelectorAll(".btn-excluir").forEach((botao, index) =>{
-    botao.addEventListener("click", ()=>{
-      let linhasTabela = tabela.querySelectorAll("tr")
-      linhasTabela[index].innerHTML = ""
-    })
-  })
+  document.querySelectorAll(".btn-excluir").forEach((botao, index) => {
+    botao.addEventListener("click", () => {
+      let linhasTabela = tabela.querySelectorAll("tr");
+      linhasTabela[index].innerHTML = "";
+      funcionarios.splice(index, 1);
+    });
+  });
 
   document.querySelector("#nome").value = "";
   document.querySelector("#idade").value = "";
