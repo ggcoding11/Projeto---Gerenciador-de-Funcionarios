@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <label for="arq-img">Escolha um arquivo</label>
+    <input type="file" name="input-image" id="arq-img" accept="image/*" / style="display: none;">
+
+    <div>
+      <img src="" alt="" id="imagePreview"/>
+    </div>
+
+    <script>
+        const input = document.querySelector("#arq-img")
+        const imagem = document.querySelector("#imagePreview")
+
+        input.addEventListener("change", function(){
+            console.log("teste")
+
+            const arquivo = input.files[0]
+
+            if (arquivo){
+                const leitor = new FileReader()
+
+                leitor.onload = function() {
+                    imagem.src = leitor.result
+                }
+
+                leitor.readAsDataURL(arquivo)
+            }
+        })
+
+
+    </script>
+
+  </body>
+</html>
