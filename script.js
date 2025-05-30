@@ -95,7 +95,6 @@ document.querySelector("#btn-cadastrar").addEventListener("click", () => {
     </tr>
   `;
 
-
   document.querySelector("#nome").value = "";
   document.querySelector("#idade").value = "";
   document.querySelector("#cidade").value = "";
