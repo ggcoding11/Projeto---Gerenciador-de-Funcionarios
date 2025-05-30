@@ -7,6 +7,9 @@ let instanciaModal;
 let indexEditado;
 let linhaEditada;
 
+let imgSrcCadastro = ""
+let imgSrcEditar = ""
+
 const tabela = document.querySelector("#corpo-tabela");
 const inputImgCadastro = document.querySelector("#input-upload")
 const imagemPerfilCadastro = document.querySelector("#perfil-upload")
@@ -17,12 +20,9 @@ inputImgCadastro.addEventListener("change", () => {
   if (arquivo) {
     const leitor = new FileReader()
 
-    let imgSrc
-
     leitor.onload = function () {
-      imgSrc = leitor.result
-      console.log(imgSrc)
-      imagemPerfilCadastro.src = imgSrc
+      imgSrcCadastro = leitor.result
+      imagemPerfilCadastro.src = imgSrcCadastro
     }
 
     leitor.readAsDataURL(arquivo)
@@ -38,7 +38,7 @@ document.querySelector("#btn-adicionar").addEventListener("click", () => {
 document.querySelector("#btn-cadastrar").addEventListener("click", () => {
   let result = coletaDados("nome", "idade", "cidade", "fone", "cpf");
 
-  if (result == -1) {
+  if (result == -1 || imgSrcCadastro == "") {
     alert("Algum dado ainda está faltando!");
     return;
   }
@@ -49,6 +49,7 @@ document.querySelector("#btn-cadastrar").addEventListener("click", () => {
 
   tabela.innerHTML += `
     <tr>
+      <td><img src="${imgSrcCadastro}" alt="foto-perfil" class="foto-tabela"/></td>
       <td>${pessoa.nome}</td>
       <td>${pessoa.idade}</td>
       <td>${pessoa.cidade}</td>
@@ -74,6 +75,8 @@ document.querySelector("#btn-cadastrar").addEventListener("click", () => {
   document.querySelector("#fone").value = "";
   document.querySelector("#cpf").value = "";
   imagemPerfilCadastro.src = "/img/profile.png";
+
+  imgSrcCadastro = ""
 
   instanciaModal.hide();
 });
