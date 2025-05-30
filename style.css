@@ -8,6 +8,11 @@
     cursor: pointer;
 }
 
+.perfil-olhar{
+    width: 120px;
+    height: 120px;
+}
+
 .input-img{
     display: none;
 }

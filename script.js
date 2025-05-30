@@ -137,6 +137,7 @@ tabela.addEventListener("click", (elemClicado) => {
 
     let pessoa = funcionarios[index];
 
+    document.querySelector("#perfil-olhar").src = pessoa.imgSrc
     document.querySelector("#nomeOlhar").value = pessoa.nome;
     document.querySelector("#idadeOlhar").value = pessoa.idade;
     document.querySelector("#cidadeOlhar").value = pessoa.cidade;
