@@ -49,25 +49,52 @@ document.querySelector("#btn-cadastrar").addEventListener("click", () => {
 
   tabela.innerHTML += `
     <tr>
-      <td><img src="${imgSrcCadastro}" alt="foto-perfil" class="foto-tabela"/></td>
-      <td>${pessoa.nome}</td>
-      <td>${pessoa.idade}</td>
-      <td>${pessoa.cidade}</td>
-      <td>${pessoa.fone}</td>
-      <td>${pessoa.cpf}</td>
       <td>
-        <button class="btn btn-success btn-olhar" data-bs-toggle="modal" data-bs-target="#modalOlhar">
-          <i class="bi bi-eye"></i>
-        </button>
-        <button class="btn btn-primary btn-editar" data-bs-toggle="modal" data-bs-target="#modalEditar">
-          <i class="bi bi-pencil-square"></i>
-        </button>
-        <button class="btn btn-danger btn-excluir">
-          <i class="bi bi-trash"></i>
-        </button>
+        <div class="d-flex justify-content-center align-items-center">
+          <img src="${imgSrcCadastro}" alt="foto-perfil" class="foto-tabela"/>
+        </div>
+      </td>
+      <td>
+        <div class="d-flex justify-content-center align-items-center">
+          ${pessoa.nome}
+        </div>
+      </td>
+      <td>
+        <div class="d-flex justify-content-center align-items-center">
+          ${pessoa.idade}
+        </div>
+      </td>
+      <td>
+        <div class="d-flex justify-content-center align-items-center">
+          ${pessoa.cidade}
+        </div>
+      </td>
+      <td>
+        <div class="d-flex justify-content-center align-items-center">
+          ${pessoa.fone}
+        </div>
+      </td>
+      <td>
+        <div class="d-flex justify-content-center align-items-center">
+          ${pessoa.cpf}
+        </div>
+      </td>
+      <td>
+        <div class="d-flex justify-content-center align-items-center gap-1">
+          <button class="btn btn-success btn-olhar" data-bs-toggle="modal" data-bs-target="#modalOlhar">
+            <i class="bi bi-eye"></i>
+          </button>
+          <button class="btn btn-primary btn-editar" data-bs-toggle="modal" data-bs-target="#modalEditar">
+            <i class="bi bi-pencil-square"></i>
+          </button>
+          <button class="btn btn-danger btn-excluir">
+            <i class="bi bi-trash"></i>
+          </button>
+        </div>
       </td>
     </tr>
   `;
+
 
   document.querySelector("#nome").value = "";
   document.querySelector("#idade").value = "";
