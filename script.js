@@ -8,6 +8,26 @@ let indexEditado;
 let linhaEditada;
 
 const tabela = document.querySelector("#corpo-tabela");
+const inputImgCadastro = document.querySelector("#input-upload")
+const imagemPerfilCadastro = document.querySelector("#perfil-upload")
+
+inputImgCadastro.addEventListener("change", () => {
+  const arquivo = inputImgCadastro.files[0]
+
+  if (arquivo) {
+    const leitor = new FileReader()
+
+    let imgSrc
+
+    leitor.onload = function () {
+      imgSrc = leitor.result
+      console.log(imgSrc)
+      imagemPerfilCadastro.src = imgSrc
+    }
+
+    leitor.readAsDataURL(arquivo)
+  }
+})
 
 document.querySelector("#btn-adicionar").addEventListener("click", () => {
   instanciaModal = bootstrap.Modal.getInstance(
@@ -53,6 +73,7 @@ document.querySelector("#btn-cadastrar").addEventListener("click", () => {
   document.querySelector("#cidade").value = "";
   document.querySelector("#fone").value = "";
   document.querySelector("#cpf").value = "";
+  imagemPerfilCadastro.src = "/img/profile.png";
 
   instanciaModal.hide();
 });
