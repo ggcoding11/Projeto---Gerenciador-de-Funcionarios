@@ -14,6 +14,9 @@ const tabela = document.querySelector("#corpo-tabela");
 const inputImgCadastro = document.querySelector("#input-upload")
 const imagemPerfilCadastro = document.querySelector("#perfil-upload")
 
+const inputImgEditar = document.querySelector("#input-editar")
+const imagemPerfilEditar = document.querySelector("#perfil-editar")
+
 inputImgCadastro.addEventListener("change", () => {
   const arquivo = inputImgCadastro.files[0]
 
@@ -29,6 +32,21 @@ inputImgCadastro.addEventListener("change", () => {
   }
 })
 
+inputImgEditar.addEventListener("change", () => {
+  const arquivo = inputImgEditar.files[0]
+
+  if (arquivo) {
+    const leitor = new FileReader()
+
+    leitor.onload = function () {
+      imgSrcEditar = leitor.result
+      imagemPerfilEditar.src = imgSrcEditar
+    }
+
+    leitor.readAsDataURL(arquivo)
+  }
+})
+
 document.querySelector("#btn-adicionar").addEventListener("click", () => {
   instanciaModal = bootstrap.Modal.getInstance(
     document.getElementById("modalCadastro")
@@ -36,9 +54,9 @@ document.querySelector("#btn-adicionar").addEventListener("click", () => {
 });
 
 document.querySelector("#btn-cadastrar").addEventListener("click", () => {
-  let result = coletaDados("nome", "idade", "cidade", "fone", "cpf");
+  let result = coletaDados("nome", "idade", "cidade", "fone", "cpf", imgSrcCadastro);
 
-  if (result == -1 || imgSrcCadastro == "") {
+  if (result == -1) {
     alert("Algum dado ainda está faltando!");
     return;
   }
@@ -51,7 +69,7 @@ document.querySelector("#btn-cadastrar").addEventListener("click", () => {
     <tr>
       <td>
         <div class="d-flex justify-content-center align-items-center">
-          <img src="${imgSrcCadastro}" alt="foto-perfil" class="foto-tabela"/>
+          <img src="${pessoa.imgSrc}" alt="foto-perfil" class="foto-tabela"/>
         </div>
       </td>
       <td>
@@ -153,6 +171,9 @@ tabela.addEventListener("click", (elemClicado) => {
     document.querySelector("#foneEditar").value =
       funcionarios[indexEditado].fone;
     document.querySelector("#cpfEditar").value = funcionarios[indexEditado].cpf;
+    document.querySelector("#perfil-editar").src = funcionarios[indexEditado].imgSrc
+
+    imgSrcEditar = funcionarios[indexEditado].imgSrc
 
     linhaEditada = botaoEditar.closest("tr");
   }
@@ -164,7 +185,8 @@ document.querySelector("#btn-alterar").addEventListener("click", () => {
     "idadeEditar",
     "cidadeEditar",
     "foneEditar",
-    "cpfEditar"
+    "cpfEditar",
+    imgSrcEditar
   );
 
   if (result == -1) {
@@ -175,35 +197,64 @@ document.querySelector("#btn-alterar").addEventListener("click", () => {
   funcionarios[indexEditado] = result;
 
   linhaEditada.innerHTML = `
-    <td>${funcionarios[indexEditado].nome}</td>
-    <td>${funcionarios[indexEditado].idade}</td>
-    <td>${funcionarios[indexEditado].cidade}</td>
-    <td>${funcionarios[indexEditado].fone}</td>
-    <td>${funcionarios[indexEditado].cpf}</td>
-    <td>
-      <button class="btn btn-success btn-olhar" data-bs-toggle="modal" data-bs-target="#modalOlhar">
-        <i class="bi bi-eye"></i>
-      </button>
-      <button class="btn btn-primary btn-editar" data-bs-toggle="modal" data-bs-target="#modalEditar">
-        <i class="bi bi-pencil-square"></i>
-      </button>
-      <button class="btn btn-danger btn-excluir">
-        <i class="bi bi-trash"></i>
-      </button>
-    </td>
+    <tr>
+      <td>
+        <div class="d-flex justify-content-center align-items-center">
+          <img src="${funcionarios[indexEditado].imgSrc}" alt="foto-perfil" class="foto-tabela"/>
+        </div>
+      </td>
+      <td>
+        <div class="d-flex justify-content-center align-items-center">
+          ${funcionarios[indexEditado].nome}
+        </div>
+      </td>
+      <td>
+        <div class="d-flex justify-content-center align-items-center">
+          ${funcionarios[indexEditado].idade}
+        </div>
+      </td>
+      <td>
+        <div class="d-flex justify-content-center align-items-center">
+          ${funcionarios[indexEditado].cidade}
+        </div>
+      </td>
+      <td>
+        <div class="d-flex justify-content-center align-items-center">
+          ${funcionarios[indexEditado].fone}
+        </div>
+      </td>
+      <td>
+        <div class="d-flex justify-content-center align-items-center">
+          ${funcionarios[indexEditado].cpf}
+        </div>
+      </td>
+      <td>
+        <div class="d-flex justify-content-center align-items-center gap-1">
+          <button class="btn btn-success btn-olhar" data-bs-toggle="modal" data-bs-target="#modalOlhar">
+            <i class="bi bi-eye"></i>
+          </button>
+          <button class="btn btn-primary btn-editar" data-bs-toggle="modal" data-bs-target="#modalEditar">
+            <i class="bi bi-pencil-square"></i>
+          </button>
+          <button class="btn btn-danger btn-excluir">
+            <i class="bi bi-trash"></i>
+          </button>
+        </div>
+      </td>
+    </tr>
   `;
 
   instanciaModal.hide();
 });
 
-function coletaDados(nomeID, idadeID, cidadeID, foneID, cpfID) {
+function coletaDados(nomeID, idadeID, cidadeID, foneID, cpfID, imgSrc) {
   let nome = document.querySelector(`#${nomeID}`).value;
   let idade = document.querySelector(`#${idadeID}`).value;
   let cidade = document.querySelector(`#${cidadeID}`).value;
   let fone = document.querySelector(`#${foneID}`).value;
   let cpf = document.querySelector(`#${cpfID}`).value;
 
-  if (nome == "" || idade == "" || cidade == "" || fone == "" || cpf == "") {
+  if (nome == "" || idade == "" || cidade == "" || fone == "" || cpf == "" || imgSrc == "") {
     return -1;
   }
 
@@ -213,6 +264,7 @@ function coletaDados(nomeID, idadeID, cidadeID, foneID, cpfID) {
     cidade: cidade,
     fone: fone,
     cpf: cpf,
+    imgSrc: imgSrc
   };
 
   return pessoa;
