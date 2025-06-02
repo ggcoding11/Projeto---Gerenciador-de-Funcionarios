@@ -2,6 +2,10 @@
     color: red;
 }
 
+.borda-direita{
+    border-right: 4px solid rgb(0, 89, 255);
+}
+
 .upload-container {
     position: relative;
 }
