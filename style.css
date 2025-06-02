@@ -5,7 +5,16 @@
 .perfil-molde{
     width: 120px;
     height: 120px;
+    padding: 10px;
+    border-radius: 10px;
     cursor: pointer;
+}
+
+.perfil-molde:hover{
+    background-color: rgb(189, 187, 187);
+    border-style: dotted;
+    border-color: white;
+    border-width: 2px;
 }
 
 .perfil-olhar{
