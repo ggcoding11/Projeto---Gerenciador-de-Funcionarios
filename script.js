@@ -27,8 +27,6 @@ document.querySelector("#btn-adicionar").addEventListener("click", abrirModalCad
 
 document.querySelector("#btn-cadastrar").addEventListener("click", cadastrarFuncionario);
 
-tabela.addEventListener("click", cliqueTabela);
-
 document.querySelector("#btn-alterar").addEventListener("click", alterarFuncionario);
 
 function coletaDados(nomeID, idadeID, cidadeID, foneID, cpfID, imgSrc) {
@@ -104,7 +102,9 @@ function cadastrarFuncionario() {
 
   funcionarios.push(pessoa);
 
-  tabela.innerHTML += `
+  let linha = document.createElement("tr")
+
+  linha.innerHTML += `
     <tr>
       <td>
         <div class="d-flex justify-content-center align-items-center">
@@ -152,6 +152,10 @@ function cadastrarFuncionario() {
     </tr>
   `;
 
+  linha.querySelector(".btn-olhar").addEventListener("click", cliqueBotaoOlhar)
+  linha.querySelector(".btn-editar").addEventListener("click", cliqueBotaoEditar);
+  linha.querySelector(".btn-excluir").addEventListener("click", cliqueBotaoExcluir);
+
   document.querySelector("#nome").value = "";
   document.querySelector("#idade").value = "";
   document.querySelector("#cidade").value = "";
@@ -162,53 +166,32 @@ function cadastrarFuncionario() {
   imgSrcCadastro = "";
 
   instanciaModal.hide();
+
+  tabela.appendChild(linha);
 }
 
-function cliqueTabela(elemClicado) {
-  let botaoOlhar = elemClicado.target.closest(".btn-olhar");
-  let botaoExcluir = elemClicado.target.closest(".btn-excluir");
-  let botaoEditar = elemClicado.target.closest(".btn-editar");
+function cliqueBotaoOlhar(elemClicado){
+  let botaoOlhar = elemClicado.currentTarget
+  let index = Array.from(tabela.querySelectorAll(".btn-olhar")).indexOf(
+    botaoOlhar
+  );
 
-  if (botaoOlhar) {
-    let index = Array.from(document.querySelectorAll(".btn-olhar")).indexOf(botaoOlhar);
+  let pessoa = funcionarios[index];
 
-    let pessoa = funcionarios[index];
+  document.querySelector("#perfil-olhar").src = pessoa.imgSrc;
+  document.querySelector("#nomeOlhar").value = pessoa.nome;
+  document.querySelector("#idadeOlhar").value = pessoa.idade;
+  document.querySelector("#cidadeOlhar").value = pessoa.cidade;
+  document.querySelector("#foneOlhar").value = pessoa.fone;
+  document.querySelector("#cpfOlhar").value = pessoa.cpf;
+}
 
-    document.querySelector("#perfil-olhar").src = pessoa.imgSrc;
-    document.querySelector("#nomeOlhar").value = pessoa.nome;
-    document.querySelector("#idadeOlhar").value = pessoa.idade;
-    document.querySelector("#cidadeOlhar").value = pessoa.cidade;
-    document.querySelector("#foneOlhar").value = pessoa.fone;
-    document.querySelector("#cpfOlhar").value = pessoa.cpf;
-  }
+function cliqueBotaoEditar(elemClicado){
+  
+}
 
-  if (botaoExcluir) {
-    let linhaBotao = botaoExcluir.closest("tr");
-    let listaLinhas = Array.from(tabela.querySelectorAll("tr"));
-    let index = listaLinhas.indexOf(linhaBotao);
-
-    funcionarios.splice(index, 1);
-    linhaBotao.remove();
-  }
-
-  if (botaoEditar) {
-    instanciaModal = bootstrap.Modal.getInstance(
-      document.getElementById("modalEditar")
-    );
-
-    indexEditado = Array.from(tabela.querySelectorAll(".btn-editar")).indexOf(botaoEditar);
-
-    document.querySelector("#nomeEditar").value = funcionarios[indexEditado].nome;
-    document.querySelector("#idadeEditar").value = funcionarios[indexEditado].idade;
-    document.querySelector("#cidadeEditar").value = funcionarios[indexEditado].cidade;
-    document.querySelector("#foneEditar").value = funcionarios[indexEditado].fone;
-    document.querySelector("#cpfEditar").value = funcionarios[indexEditado].cpf;
-    document.querySelector("#perfil-editar").src = funcionarios[indexEditado].imgSrc;
-
-    imgSrcEditar = funcionarios[indexEditado].imgSrc;
-
-    linhaEditada = botaoEditar.closest("tr");
-  }
+function cliqueBotaoExcluir(elemClicado){
+  return
 }
 
 function alterarFuncionario() {
