@@ -19,43 +19,80 @@ const imagemPerfilCadastro = document.querySelector("#perfil-upload")
 const inputImgEditar = document.querySelector("#input-editar")
 const imagemPerfilEditar = document.querySelector("#perfil-editar")
 
-inputImgCadastro.addEventListener("change", () => {
-  const arquivo = inputImgCadastro.files[0]
+inputImgCadastro.addEventListener("change", handleImgCadastro);
+
+inputImgEditar.addEventListener("change", handleImgEditar);
+
+document.querySelector("#btn-adicionar").addEventListener("click", abrirModalCadastro);
+
+document.querySelector("#btn-cadastrar").addEventListener("click", cadastrarFuncionario);
+
+tabela.addEventListener("click", cliqueTabela);
+
+document.querySelector("#btn-alterar").addEventListener("click", alterarFuncionario);
+
+function coletaDados(nomeID, idadeID, cidadeID, foneID, cpfID, imgSrc) {
+  let nome = document.querySelector(`#${nomeID}`).value;
+  let idade = document.querySelector(`#${idadeID}`).value;
+  let cidade = document.querySelector(`#${cidadeID}`).value;
+  let fone = document.querySelector(`#${foneID}`).value;
+  let cpf = document.querySelector(`#${cpfID}`).value;
+
+  if (nome == "" || idade == "" || cidade == "" || fone == "" || cpf == "" || imgSrc == "") {
+    return -1;
+  }
+
+  let pessoa = {
+    nome: nome,
+    idade: idade,
+    cidade: cidade,
+    fone: fone,
+    cpf: cpf,
+    imgSrc: imgSrc
+  };
+
+  return pessoa;
+}
+
+// Funções movidas
+
+function handleImgCadastro() {
+  const arquivo = inputImgCadastro.files[0];
 
   if (arquivo) {
-    const leitor = new FileReader()
+    const leitor = new FileReader();
 
     leitor.onload = function () {
-      imgSrcCadastro = leitor.result
-      imagemPerfilCadastro.src = imgSrcCadastro
+      imgSrcCadastro = leitor.result;
+      imagemPerfilCadastro.src = imgSrcCadastro;
     }
 
-    leitor.readAsDataURL(arquivo)
+    leitor.readAsDataURL(arquivo);
   }
-})
+}
 
-inputImgEditar.addEventListener("change", () => {
-  const arquivo = inputImgEditar.files[0]
+function handleImgEditar() {
+  const arquivo = inputImgEditar.files[0];
 
   if (arquivo) {
-    const leitor = new FileReader()
+    const leitor = new FileReader();
 
     leitor.onload = function () {
-      imgSrcEditar = leitor.result
-      imagemPerfilEditar.src = imgSrcEditar
+      imgSrcEditar = leitor.result;
+      imagemPerfilEditar.src = imgSrcEditar;
     }
 
-    leitor.readAsDataURL(arquivo)
+    leitor.readAsDataURL(arquivo);
   }
-})
+}
 
-document.querySelector("#btn-adicionar").addEventListener("click", () => {
+function abrirModalCadastro() {
   instanciaModal = bootstrap.Modal.getInstance(
     document.getElementById("modalCadastro")
   );
-});
+}
 
-document.querySelector("#btn-cadastrar").addEventListener("click", () => {
+function cadastrarFuncionario() {
   let result = coletaDados("nome", "idade", "cidade", "fone", "cpf", imgSrcCadastro);
 
   if (result == -1) {
@@ -122,24 +159,22 @@ document.querySelector("#btn-cadastrar").addEventListener("click", () => {
   document.querySelector("#cpf").value = "";
   imagemPerfilCadastro.src = "/img/profile.png";
 
-  imgSrcCadastro = ""
+  imgSrcCadastro = "";
 
   instanciaModal.hide();
-});
+}
 
-tabela.addEventListener("click", (elemClicado) => {
+function cliqueTabela(elemClicado) {
   let botaoOlhar = elemClicado.target.closest(".btn-olhar");
   let botaoExcluir = elemClicado.target.closest(".btn-excluir");
   let botaoEditar = elemClicado.target.closest(".btn-editar");
 
   if (botaoOlhar) {
-    let index = Array.from(document.querySelectorAll(".btn-olhar")).indexOf(
-      botaoOlhar
-    );
+    let index = Array.from(document.querySelectorAll(".btn-olhar")).indexOf(botaoOlhar);
 
     let pessoa = funcionarios[index];
 
-    document.querySelector("#perfil-olhar").src = pessoa.imgSrc
+    document.querySelector("#perfil-olhar").src = pessoa.imgSrc;
     document.querySelector("#nomeOlhar").value = pessoa.nome;
     document.querySelector("#idadeOlhar").value = pessoa.idade;
     document.querySelector("#cidadeOlhar").value = pessoa.cidade;
@@ -161,28 +196,22 @@ tabela.addEventListener("click", (elemClicado) => {
       document.getElementById("modalEditar")
     );
 
-    indexEditado = Array.from(tabela.querySelectorAll(".btn-editar")).indexOf(
-      botaoEditar
-    );
+    indexEditado = Array.from(tabela.querySelectorAll(".btn-editar")).indexOf(botaoEditar);
 
-    document.querySelector("#nomeEditar").value =
-      funcionarios[indexEditado].nome;
-    document.querySelector("#idadeEditar").value =
-      funcionarios[indexEditado].idade;
-    document.querySelector("#cidadeEditar").value =
-      funcionarios[indexEditado].cidade;
-    document.querySelector("#foneEditar").value =
-      funcionarios[indexEditado].fone;
+    document.querySelector("#nomeEditar").value = funcionarios[indexEditado].nome;
+    document.querySelector("#idadeEditar").value = funcionarios[indexEditado].idade;
+    document.querySelector("#cidadeEditar").value = funcionarios[indexEditado].cidade;
+    document.querySelector("#foneEditar").value = funcionarios[indexEditado].fone;
     document.querySelector("#cpfEditar").value = funcionarios[indexEditado].cpf;
-    document.querySelector("#perfil-editar").src = funcionarios[indexEditado].imgSrc
+    document.querySelector("#perfil-editar").src = funcionarios[indexEditado].imgSrc;
 
-    imgSrcEditar = funcionarios[indexEditado].imgSrc
+    imgSrcEditar = funcionarios[indexEditado].imgSrc;
 
     linhaEditada = botaoEditar.closest("tr");
   }
-});
+}
 
-document.querySelector("#btn-alterar").addEventListener("click", () => {
+function alterarFuncionario() {
   let result = coletaDados(
     "nomeEditar",
     "idadeEditar",
@@ -248,27 +277,4 @@ document.querySelector("#btn-alterar").addEventListener("click", () => {
   `;
 
   instanciaModal.hide();
-});
-
-function coletaDados(nomeID, idadeID, cidadeID, foneID, cpfID, imgSrc) {
-  let nome = document.querySelector(`#${nomeID}`).value;
-  let idade = document.querySelector(`#${idadeID}`).value;
-  let cidade = document.querySelector(`#${cidadeID}`).value;
-  let fone = document.querySelector(`#${foneID}`).value;
-  let cpf = document.querySelector(`#${cpfID}`).value;
-
-  if (nome == "" || idade == "" || cidade == "" || fone == "" || cpf == "" || imgSrc == "") {
-    return -1;
-  }
-
-  let pessoa = {
-    nome: nome,
-    idade: idade,
-    cidade: cidade,
-    fone: fone,
-    cpf: cpf,
-    imgSrc: imgSrc
-  };
-
-  return pessoa;
 }
