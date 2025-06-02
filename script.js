@@ -208,7 +208,12 @@ function cliqueBotaoEditar(elemClicado){
 }
 
 function cliqueBotaoExcluir(elemClicado){
-  
+  let botaoExcluir = elemClicado.currentTarget
+  let linhaBotao = botaoExcluir.closest("tr");
+  let index = Array.from(tabela.querySelectorAll("tr")).indexOf(linhaBotao);
+
+  funcionarios.splice(index, 1);
+  linhaBotao.remove();
 }
 
 function alterarFuncionario() {
