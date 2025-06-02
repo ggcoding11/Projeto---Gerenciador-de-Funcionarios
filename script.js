@@ -187,11 +187,28 @@ function cliqueBotaoOlhar(elemClicado){
 }
 
 function cliqueBotaoEditar(elemClicado){
-  
+  let botaoEditar = elemClicado.currentTarget
+
+  instanciaModal = bootstrap.Modal.getInstance(
+    document.getElementById("modalEditar")
+  );
+
+  indexEditado = Array.from(tabela.querySelectorAll(".btn-editar")).indexOf(botaoEditar);
+
+  document.querySelector("#nomeEditar").value = funcionarios[indexEditado].nome;
+  document.querySelector("#idadeEditar").value = funcionarios[indexEditado].idade;
+  document.querySelector("#cidadeEditar").value = funcionarios[indexEditado].cidade;
+  document.querySelector("#foneEditar").value = funcionarios[indexEditado].fone;
+  document.querySelector("#cpfEditar").value = funcionarios[indexEditado].cpf;
+  document.querySelector("#perfil-editar").src = funcionarios[indexEditado].imgSrc;
+
+  imgSrcEditar = funcionarios[indexEditado].imgSrc;
+
+  linhaEditada = botaoEditar.closest("tr");
 }
 
 function cliqueBotaoExcluir(elemClicado){
-  return
+  
 }
 
 function alterarFuncionario() {
