@@ -54,8 +54,6 @@ function coletaDados(nomeID, idadeID, cidadeID, foneID, cpfID, imgSrc) {
   return pessoa;
 }
 
-// Funções movidas
-
 function handleImgCadastro() {
   const arquivo = inputImgCadastro.files[0];
 
