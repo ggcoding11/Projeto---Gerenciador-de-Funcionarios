@@ -31,29 +31,6 @@ tabela.addEventListener("click", cliqueTabela);
 
 document.querySelector("#btn-alterar").addEventListener("click", alterarFuncionario);
 
-function coletaDados(nomeID, idadeID, cidadeID, foneID, cpfID, imgSrc) {
-  let nome = document.querySelector(`#${nomeID}`).value;
-  let idade = document.querySelector(`#${idadeID}`).value;
-  let cidade = document.querySelector(`#${cidadeID}`).value;
-  let fone = document.querySelector(`#${foneID}`).value;
-  let cpf = document.querySelector(`#${cpfID}`).value;
-
-  if (nome == "" || idade == "" || cidade == "" || fone == "" || cpf == "" || imgSrc == "") {
-    return -1;
-  }
-
-  let pessoa = {
-    nome: nome,
-    idade: idade,
-    cidade: cidade,
-    fone: fone,
-    cpf: cpf,
-    imgSrc: imgSrc
-  };
-
-  return pessoa;
-}
-
 function handleImgCadastro() {
   const arquivo = inputImgCadastro.files[0];
 
@@ -277,4 +254,34 @@ function alterarFuncionario() {
   `;
 
   instanciaModal.hide();
+}
+
+function coletaDados(nomeID, idadeID, cidadeID, foneID, cpfID, imgSrc) {
+  let nome = document.querySelector(`#${nomeID}`).value;
+  let idade = document.querySelector(`#${idadeID}`).value;
+  let cidade = document.querySelector(`#${cidadeID}`).value;
+  let fone = document.querySelector(`#${foneID}`).value;
+  let cpf = document.querySelector(`#${cpfID}`).value;
+
+  if (
+    nome == "" ||
+    idade == "" ||
+    cidade == "" ||
+    fone == "" ||
+    cpf == "" ||
+    imgSrc == ""
+  ) {
+    return -1;
+  }
+
+  let pessoa = {
+    nome: nome,
+    idade: idade,
+    cidade: cidade,
+    fone: fone,
+    cpf: cpf,
+    imgSrc: imgSrc,
+  };
+
+  return pessoa;
 }
