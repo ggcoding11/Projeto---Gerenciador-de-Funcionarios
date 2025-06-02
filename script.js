@@ -65,6 +65,7 @@ function handleImgCadastro() {
     leitor.onload = function () {
       imgSrcCadastro = leitor.result;
       imagemPerfilCadastro.src = imgSrcCadastro;
+      inputImgCadastro.value = "";
     }
 
     leitor.readAsDataURL(arquivo);
@@ -80,6 +81,7 @@ function handleImgEditar() {
     leitor.onload = function () {
       imgSrcEditar = leitor.result;
       imagemPerfilEditar.src = imgSrcEditar;
+      inputImgEditar.value = "";
     }
 
     leitor.readAsDataURL(arquivo);
