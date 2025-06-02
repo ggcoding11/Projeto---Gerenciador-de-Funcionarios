@@ -1,5 +1,7 @@
 Inputmask({ mask: "(99) 99999-9999" }).mask(document.querySelector("#fone"));
 Inputmask({ mask: "999.999.999-99" }).mask(document.querySelector("#cpf"));
+Inputmask({ mask: "(99) 99999-9999" }).mask(document.querySelector("#foneEditar"));
+Inputmask({ mask: "999.999.999-99" }).mask(document.querySelector("#cpfEditar"));
 
 let funcionarios = [];
 let instanciaModal;
