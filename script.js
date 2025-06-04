@@ -77,6 +77,21 @@ function cadastrarFuncionario() {
     return;
   }
 
+  if (result == -2) {
+    alert("Telefone incompleto!");
+    return;
+  }
+
+  if (result == -3) {
+    alert("CPF incompleto!");
+    return;
+  }
+
+  if (idade == -4) {
+    alert("Idade inválida (min. 18 anos)!");
+    return;
+  }
+
   let pessoa = result;
 
   funcionarios.push(pessoa);
@@ -203,6 +218,21 @@ function alterarFuncionario() {
     return;
   }
 
+  if (result == -2) {
+    alert("Telefone incompleto!");
+    return;
+  }
+
+  if (result == -3) {
+    alert("CPF incompleto!");
+    return;
+  }
+
+  if (idade == -4) {
+    alert("Idade inválida (min. 18 anos)!");
+    return;
+  }
+
   funcionarios[indexEditado] = result;
 
   linhaEditada.innerHTML = `
@@ -270,6 +300,18 @@ function coletaDados(nomeID, idadeID, cidadeID, foneID, cpfID, imgSrc) {
     imgSrc == ""
   ) {
     return -1;
+  }
+
+  if (fone.length < 15){
+    return -2;
+  }
+
+  if (cpf.length < 14){
+    return -3
+  }
+
+  if (idade < 18){
+    return -4
   }
 
   let pessoa = {
