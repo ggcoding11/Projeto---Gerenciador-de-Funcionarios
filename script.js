@@ -73,22 +73,6 @@ function cadastrarFuncionario() {
   let result = coletaDados("nome", "idade", "cidade", "fone", "cpf", imgSrcCadastro);
 
   if (result == -1) {
-    alert("Algum dado ainda está faltando!");
-    return;
-  }
-
-  if (result == -2) {
-    alert("Telefone incompleto!");
-    return;
-  }
-
-  if (result == -3) {
-    alert("CPF incompleto!");
-    return;
-  }
-
-  if (idade == -4) {
-    alert("Idade inválida (min. 18 anos)!");
     return;
   }
 
@@ -214,22 +198,6 @@ function alterarFuncionario() {
   );
 
   if (result == -1) {
-    alert("Algum dado ainda está faltando!");
-    return;
-  }
-
-  if (result == -2) {
-    alert("Telefone incompleto!");
-    return;
-  }
-
-  if (result == -3) {
-    alert("CPF incompleto!");
-    return;
-  }
-
-  if (idade == -4) {
-    alert("Idade inválida (min. 18 anos)!");
     return;
   }
 
@@ -299,19 +267,23 @@ function coletaDados(nomeID, idadeID, cidadeID, foneID, cpfID, imgSrc) {
     cpf == "" ||
     imgSrc == ""
   ) {
+    alert("Algum dado ainda está faltando!");
     return -1;
   }
 
   if (fone.length < 15){
-    return -2;
+    alert("Telefone incompleto!");
+    return -1;
   }
 
   if (cpf.length < 14){
-    return -3
+    alert("CPF incompleto!")
+    return -1
   }
 
   if (idade < 18){
-    return -4
+    alert("Idade inválida!")
+    return -1
   }
 
   let pessoa = {
