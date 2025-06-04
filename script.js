@@ -54,7 +54,7 @@ function handleImgEditar() {
     const leitor = new FileReader();
 
     leitor.onload = function () {
-      imgSrcEditar = leitor.result;
+      imgSrcEditar = leitor.result;  
       imagemPerfilEditar.src = imgSrcEditar;
       inputImgEditar.value = "";
     }
@@ -206,51 +206,49 @@ function alterarFuncionario() {
   funcionarios[indexEditado] = result;
 
   linhaEditada.innerHTML = `
-    <tr>
-      <td>
-        <div class="d-flex justify-content-center align-items-center">
-          <img src="${funcionarios[indexEditado].imgSrc}" alt="foto-perfil" class="foto-tabela"/>
-        </div>
-      </td>
-      <td>
-        <div class="d-flex justify-content-center align-items-center">
-          ${funcionarios[indexEditado].nome}
-        </div>
-      </td>
-      <td>
-        <div class="d-flex justify-content-center align-items-center">
-          ${funcionarios[indexEditado].idade}
-        </div>
-      </td>
-      <td>
-        <div class="d-flex justify-content-center align-items-center">
-          ${funcionarios[indexEditado].cidade}
-        </div>
-      </td>
-      <td>
-        <div class="d-flex justify-content-center align-items-center">
-          ${funcionarios[indexEditado].fone}
-        </div>
-      </td>
-      <td>
-        <div class="d-flex justify-content-center align-items-center">
-          ${funcionarios[indexEditado].cpf}
-        </div>
-      </td>
-      <td>
-        <div class="d-flex justify-content-center align-items-center gap-1">
-          <button class="btn btn-success btn-olhar" data-bs-toggle="modal" data-bs-target="#modalOlhar">
-            <i class="bi bi-eye"></i>
-          </button>
-          <button class="btn btn-primary btn-editar" data-bs-toggle="modal" data-bs-target="#modalEditar">
-            <i class="bi bi-pencil-square"></i>
-          </button>
-          <button class="btn btn-danger btn-excluir">
-            <i class="bi bi-trash"></i>
-          </button>
-        </div>
-      </td>
-    </tr>
+    <td>
+      <div class="d-flex justify-content-center align-items-center">
+        <img src="${funcionarios[indexEditado].imgSrc}" alt="foto-perfil" class="foto-tabela"/>
+      </div>
+    </td>
+    <td>
+      <div class="d-flex justify-content-center align-items-center">
+        ${funcionarios[indexEditado].nome}
+      </div>
+    </td>
+    <td>
+      <div class="d-flex justify-content-center align-items-center">
+        ${funcionarios[indexEditado].idade}
+      </div>
+    </td>
+    <td>
+      <div class="d-flex justify-content-center align-items-center">
+        ${funcionarios[indexEditado].cidade}
+      </div>
+    </td>
+    <td>
+      <div class="d-flex justify-content-center align-items-center">
+        ${funcionarios[indexEditado].fone}
+      </div>
+    </td>
+    <td>
+      <div class="d-flex justify-content-center align-items-center">
+        ${funcionarios[indexEditado].cpf}
+      </div>
+    </td>
+    <td>
+      <div class="d-flex justify-content-center align-items-center gap-1">
+        <button class="btn btn-success btn-olhar" data-bs-toggle="modal" data-bs-target="#modalOlhar">
+          <i class="bi bi-eye"></i>
+        </button>
+        <button class="btn btn-primary btn-editar" data-bs-toggle="modal" data-bs-target="#modalEditar">
+          <i class="bi bi-pencil-square"></i>
+        </button>
+        <button class="btn btn-danger btn-excluir">
+          <i class="bi bi-trash"></i>
+        </button>
+      </div>
+    </td>
   `;
 
   instanciaModal.hide();
