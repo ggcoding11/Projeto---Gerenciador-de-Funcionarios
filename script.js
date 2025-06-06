@@ -134,7 +134,7 @@ function cadastrarFuncionario() {
   document.querySelector("#cidade").value = "";
   document.querySelector("#fone").value = "";
   document.querySelector("#cpf").value = "";
-  imagemPerfilCadastro.src = "/img/profile.png";
+  imagemPerfilCadastro.src = "img/profile.png";
 
   imgSrcCadastro = "";
 
